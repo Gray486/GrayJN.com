@@ -1,0 +1,48 @@
+body {
+    background-color: rgb(116, 116, 116);
+    width: 100%;
+    text-align: center;
+}
+
+#welcome {
+    margin-top: 20px;
+    font-size: 60px;
+}
+
+a {
+    color: rgb(40, 65, 177);
+}
+
+#about {
+    font-size: 25px;
+    padding: 0px 50px 0px 50px;
+}
+
+#gradeInput {
+    width: 50%;
+    height: 200px;
+    resize: none;
+    margin-top: 10px;
+}
+
+#projects th{
+    font-size: 40px;
+}
+
+#projects td{
+    font-size: 30px;
+    padding: 0px 20px 0px 20px;
+}
+
+#calculate {
+    margin-left: auto; 
+    margin-right: auto;
+    text-align: center;
+}
+
+#results {
+    width: 300px;
+    margin-left: calc(50% - 150px);
+    margin-top: 20px;
+    text-align: center;
+}
