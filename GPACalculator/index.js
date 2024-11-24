@@ -82,7 +82,6 @@ function calculate() {
     table += "</tbody>"
 
     document.getElementById("results").innerHTML = table
-
     document.getElementById("results").style.display = "block";
 }
 
