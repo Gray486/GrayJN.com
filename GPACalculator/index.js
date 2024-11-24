@@ -71,8 +71,8 @@ function calculate() {
 
     let table = '<tbody>'
     table += `<tr class="table-info"> <td scope="col">Unweighted Class Average&sup1;</td> <td scope="col">${unweightedGPA}</td> </tr>`;
-    table += `<tr class="table-info"> <td scope="col">Weighted Class Average&sup2;</td> <td scope="col">${weightedGPA}</td> </tr>`;
-    table += `<tr class="table-info"> <td scope="col">Weighted GPA²</td> <td scope="col">${weightedTotalGPA}</td> </tr>`;
+    table += `<tr class="table-info"> <td scope="col">Weighted Class Average&sup1;</td> <td scope="col">${weightedGPA}</td> </tr>`;
+    table += `<tr class="table-info"> <td scope="col">Weighted GPA&sup2</td> <td scope="col">${weightedTotalGPA}</td> </tr>`;
     table += `<tr> <td>IC Current Weighted GPA</td> <td>${currentGPA}</td> </tr>`;
 
     for (let i = 0; i < classes.length; i++) {
