@@ -13,16 +13,16 @@ function calculate() {
 
     let currentGPA = null;
 
-    if (gradePageArr[0] == "GPA") {
-        currentGPA = parseFloat(gradePageArr[2]);
-        gradePageArr.splice(0, 3);
-    }
-
-    const PARTS_TO_REMOVE = ["A", "B", "C", "D", "E", "F", "Conduct", "In-progress", ""]
+    const PARTS_TO_REMOVE = ["A", "B", "C", "D", "E", "F", "Conduct", "In-progress", "Settings", "Grades Settings", "Hide dropped courses", "Hide rows without grades or assignments", "Activating these elements will cause content on the page to change.", ""]
 
     while (includesAny(gradePageArr, PARTS_TO_REMOVE) > -1) {
         let index = includesAny(gradePageArr, PARTS_TO_REMOVE);
         gradePageArr.splice(index, 1);
+    }
+
+    if (gradePageArr[0] == "GPA") {
+        currentGPA = parseFloat(gradePageArr[2]);
+        gradePageArr.splice(0, 3);
     }
 
     while (gradePageArr.indexOf("Progress") > -1) {
