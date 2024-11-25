@@ -18,40 +18,40 @@ function calculate() {
         gradePageArr.splice(0, 3);
     }
 
-    let classes = [];
+    const PARTS_TO_REMOVE = ["A", "B", "C", "D", "E", "F", "Conduct", "In-progress", ""]
 
-    while (gradePageArr.indexOf("In-progress") > -1) {
-        let index = gradePageArr.indexOf("In-progress");
+    while (includesAny(gradePageArr, PARTS_TO_REMOVE) > -1) {
+        let index = includesAny(gradePageArr, PARTS_TO_REMOVE);
         gradePageArr.splice(index, 1);
     }
 
-    while (gradePageArr.length > 0) {
+    while (gradePageArr.indexOf("Progress") > -1) {
+        let index = gradePageArr.indexOf("Progress");
+        gradePageArr.splice(index, 3);
+    }
+
+    console.log(gradePageArr)
+
+    let classes = []
+
+    let runs = 0;
+    while (gradePageArr.length > 0 && runs < 100) {
+        runs++;
+        
+        console.log(gradePageArr)
+
         let name = gradePageArr[0];
-        let spliceNumSubtractor = 0;
+        let percentage = parseFloat(gradePageArr[3].slice(1))
+        let splice = 4;
 
-        if (isNaN(parseFloat(gradePageArr[2]))) {
-            spliceNumSubtractor = 2;
-        }
-
-        let percentage = gradePageArr[6 - spliceNumSubtractor];
-
-        percentage = parseFloat(percentage.slice(1))
+        if (gradePageArr[4] && !isNaN(parseFloat(gradePageArr[4].slice(1)))) splice++;
 
         classes.push({
             name: name,
             weighted: name.includes("AP") ? percentage + 10 : percentage,
             unweighted: percentage
         })
-
-        if (isAny(gradePageArr[8-spliceNumSubtractor], ["A", "B", "C", "D", "E", "F"])) {
-            if (!isNaN(parseFloat(gradePageArr[9-spliceNumSubtractor]?.slice(1)))) {
-                gradePageArr.splice(0, 10-spliceNumSubtractor);
-            } else {
-                gradePageArr.splice(0, 9-spliceNumSubtractor);
-            }
-        } else {
-            gradePageArr.splice(0, 8-spliceNumSubtractor);
-        }
+        gradePageArr.splice(0, splice)
     }
 
     let unweightedGPA = 0;
@@ -73,7 +73,9 @@ function calculate() {
     table += `<tr class="table-info"> <td scope="col">Unweighted Class Average<sup>1</sup></td> <td scope="col">${unweightedGPA}</td> </tr>`;
     table += `<tr class="table-info"> <td scope="col">Weighted Class Average<sup>1</sup></td> <td scope="col">${weightedGPA}</td> </tr>`;
     table += `<tr class="table-info"> <td scope="col">Weighted GPA<sup>2</sup></td> <td scope="col">${weightedTotalGPA}</td> </tr>`;
-    table += `<tr> <td>IC Current Weighted GPA</td> <td>${currentGPA}</td> </tr>`;
+    if (currentGPA) {
+        table += `<tr> <td>IC Current Weighted GPA</td> <td>${currentGPA}</td> </tr>`;
+    }
 
     for (let i = 0; i < classes.length; i++) {
         table += `<tr> <td>${classes[i].name}</td> <td>${classes[i].weighted}</td> </tr>`;
@@ -85,9 +87,9 @@ function calculate() {
     document.getElementById("results").style.display = "block";
 }
 
-function isAny(element, things) {
+function includesAny(list, things) {
     for (let i = 0; i < things.length; i++) {
-        if (element == things[i]) return true;
+        if (list.includes(things[i])) return list.indexOf(things[i]);
     }
-    return false;
+    return -1;
 }
