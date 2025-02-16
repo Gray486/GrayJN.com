@@ -1,5 +1,5 @@
 body {
-    background-color: rgb(201, 201, 201);
+    background-color: rgb(163, 171, 171);
     width: 100%;
     text-align: center;
 }
@@ -15,20 +15,32 @@ a {
 
 #about {
     font-size: 25px;
+    padding: 30px 50px 0px 50px;
+}
+
+#description {
+    font-size: 25px;
     padding: 0px 50px 0px 50px;
 }
 
-#projects {
-    margin-left: auto; 
-    margin-right: auto;
-    text-align: center;
+.project {
+    width: 100%;
+    text-align: left;
+    padding-right: 10px;
+    min-height: 300px;
 }
 
-#projects th{
-    font-size: 40px;
+.project.light {
+    background-color: rgb(255, 255, 255);
 }
 
-#projects td{
-    font-size: 30px;
-    padding: 0px 20px 0px 20px;
+.project .image {
+    width: 280;
+    height: 280;
+    margin: 10px;
+    float: left;
+}
+
+.project-desc {
+    font-size: 25px;
 }
